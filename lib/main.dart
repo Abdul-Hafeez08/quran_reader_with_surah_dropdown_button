@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'provider/surah_provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(
@@ -13,6 +14,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -39,7 +42,15 @@ class _SurahScreenState extends State<SurahScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('surah Reader'),
+        backgroundColor: Colors.blue,
+        title: Text(
+          'Surah Reader',
+          style: GoogleFonts.lato(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: provider.isLoading
           ? Center(child: CircularProgressIndicator())
@@ -75,20 +86,24 @@ class _SurahScreenState extends State<SurahScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     ElevatedButton(
-                      onPressed: provider.ayahPageIndex > 0
-                          ? () {
-                              provider.ayahPageIndex--;
-                              provider.notifyListeners();
-                            }
-                          : null,
-                      child: Text("Previous"),
-                    ),
-                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.green,
+                        padding:
+                            EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
                       onPressed: provider.nextPage,
-                      child: Text("Next"),
+                      child: Text(
+                        "Next",
+                        style: GoogleFonts.lato(fontSize: 16),
+                      ),
                     ),
                   ],
                 ),
+                SizedBox(height: 10)
               ],
             ),
     );
