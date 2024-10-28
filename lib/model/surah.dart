@@ -1,4 +1,3 @@
-// models/surah.dart
 class Ayah {
   final int number;
   final String text;

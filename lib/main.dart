@@ -1,4 +1,3 @@
-// main.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'provider/surah_provider.dart';
@@ -75,9 +74,14 @@ class _SurahScreenState extends State<SurahScreen> {
                     itemCount: provider.ayahsPage.length,
                     itemBuilder: (context, index) {
                       final ayah = provider.ayahsPage[index];
-                      return ListTile(
-                        title: Text(ayah.text),
-                        subtitle: Text('Ayah ${ayah.number}'),
+                      return Column(
+                        children: [
+                          ListTile(
+                            title: Text(ayah.text),
+                            subtitle: Text('Ayah ${ayah.number}'),
+                          ),
+                          if (index < provider.ayahsPage.length - 1) Divider(),
+                        ],
                       );
                     },
                   ),
